@@ -24,13 +24,18 @@ public final class CurrencyView extends javax.swing.JPanel implements EditorReco
     private Object m_Currency_ID;
     
     /**
-     * Creates new form JPanelCurrency
+     * Creates new form CurrencyView
      */
     public CurrencyView() {
         initComponents();
     }
 
-    CurrencyView(AppView app, DirtyManager dirty) {
+    /**
+     * Creates new form CurrencyView
+     * @param app
+     * @param dirty 
+     */
+    public CurrencyView(AppView app, DirtyManager dirty) {
         this();
         
         jTxtISO_Code.getDocument().addDocumentListener(dirty);

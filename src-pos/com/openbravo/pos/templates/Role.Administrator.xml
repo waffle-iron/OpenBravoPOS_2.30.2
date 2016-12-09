@@ -98,4 +98,5 @@
     <class name="sales.Discount"/>
     <!-- CURRENCY-->
     <class name="com.openbravo.pos.sales.currency.CurrencyPanel"/>
+    <class name="com.openbravo.pos.sales.currency.ConversionTypePanel"/>
 </permissions>
