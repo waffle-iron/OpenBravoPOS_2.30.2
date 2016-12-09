@@ -16,23 +16,20 @@ import com.openbravo.pos.panels.JPanelTable;
 import javax.swing.ListCellRenderer;
 
 /**
- * @author <a href="dixon.22martinez@gmail.com" >Dixon Martinez</a>
- * @see 
- *      <a href="https://github.com/dixon22ma/OpenBravoPOS_2.30.2/issues/16"> FR [16] Add window Conversion Type</a>      
+ *
+ * @author tt-01
  */
-public class ConversionTypePanel extends JPanelTable{
+public class ConversionRatePanel extends JPanelTable {
+
+    private TableDefinition t_ConversionRate;
     
-    /** Editor Conversion Type  */
-    private ConversionTypeView jEditor;
-    /** Table Conversion Type   */
-    private TableDefinition t_ConversionType;
+    private ConversionRateView jEditor;
     
     @Override
     protected void init() {
-        DataLogicConversionType dlConvType = (DataLogicConversionType) app.getBean(DataLogicConversionType.class.getName());
-        t_ConversionType = dlConvType.getTableConversionType();
-        jEditor = new ConversionTypeView(app, dirty);
-        
+        DataLogicConversionRate dlConvRate = (DataLogicConversionRate) app.getBean(DataLogicConversionRate.class.getName());
+        t_ConversionRate = dlConvRate.getTableConversionRate();
+        jEditor = new ConversionRateView(app, dirty);
     }
 
     @Override
@@ -42,22 +39,22 @@ public class ConversionTypePanel extends JPanelTable{
 
     @Override
     public ListProvider getListProvider() {
-        return new ListProviderCreator(t_ConversionType);
+        return new ListProviderCreator(t_ConversionRate);
     }
 
     @Override
     public SaveProvider getSaveProvider() {
-        return new SaveProvider(t_ConversionType, new int[] {0,1,2,3,4,5});
+        return new SaveProvider(t_ConversionRate, new int [] {0});
     }
 
     @Override
     public String getTitle() {
-        return AppLocal.getIntString("Menu.Currency.ConversionType");
+        return AppLocal.getIntString("Menu.Currency.ConversionRate");
     }
     
     @Override
     public ListCellRenderer getListCellRenderer() {
-        return new ListCellRendererBasic(t_ConversionType.getRenderStringBasic(new int[]{1,2}));
+        return new ListCellRendererBasic(t_ConversionRate.getRenderStringBasic(new int[]{1,2}));
     }
     
 }
