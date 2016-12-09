@@ -95,5 +95,7 @@
     <class name="com.openbravo.pos.config.JPanelConfiguration"/>
     <class name="button.print"/>
     <class name="button.opendrawer"/>
-	<class name="sales.Discount"/>
+    <class name="sales.Discount"/>
+    <!-- CURRENCY-->
+    <class name="com.openbravo.pos.sales.currency.CurrencyPanel"/>
 </permissions>
