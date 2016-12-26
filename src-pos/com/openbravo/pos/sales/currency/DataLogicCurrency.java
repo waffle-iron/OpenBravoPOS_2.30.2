@@ -22,6 +22,8 @@ public class DataLogicCurrency extends BeanFactoryDataSingle {
     protected Session m_Session;
     /** Table Currency          */
     private TableDefinition t_Currency;
+    /** Table Currency          */
+    public static final String TABLE_NAME = "CURRENCY";
     /** Currency Data           */
     private static final Datas[] CURRENCY_DATAS = 
             new Datas[] {

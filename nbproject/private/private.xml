@@ -2,6 +2,30 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/SaveProvider.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/StateListener.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/DataWrite.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/Finder.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/EditorCreatorComposed.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/DataParams.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/EditorRecord.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/DocumentLoaderBasic.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/DataResultSet.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/BatchSentenceResource.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/EditorListener.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/FilterEditorCreator.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/DirtyListener.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/BatchSentence.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/SessionDB.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/ListProvider.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/ListProviderCreator.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/DataField.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/DocumentLoader.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/Session.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/LocalRes.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/user/DirtyManager.java</file>
+            <file>file:/opt/Development/openbravo/OpenBravoPOS_2.30.2/src-data/com/openbravo/data/loader/DataRead.java</file>
+        </group>
     </open-files>
 </project-private>
