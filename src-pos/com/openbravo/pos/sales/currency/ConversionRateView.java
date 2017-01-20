@@ -6,26 +6,50 @@
 package com.openbravo.pos.sales.currency;
 
 import com.openbravo.basic.BasicException;
+import com.openbravo.beans.JCalendarDialog;
+import com.openbravo.data.gui.ComboBoxValModel;
+import com.openbravo.data.loader.SentenceList;
 import com.openbravo.data.user.DirtyManager;
 import com.openbravo.data.user.EditorRecord;
+import com.openbravo.format.Formats;
+import com.openbravo.pos.forms.AppLocal;
 import com.openbravo.pos.forms.AppView;
 import java.awt.Component;
+import java.util.List;
+import java.util.Date;
 
 /**
  *
  * @author tt-01
  */
-public class ConversionRateView extends javax.swing.JPanel implements EditorRecord{
+public final class ConversionRateView extends javax.swing.JPanel implements EditorRecord{
 
+    private Object m_ConversionRateID;
+    
+    private SentenceList currenSentList ;
+    private ComboBoxValModel currenBoxValMod;
+    private ComboBoxValModel currenToBoxValMod;
+    private DataLogicConversionRate dlConversionRate;
+    
     /**
      * Creates new form ConversionRateView
+     * @param m_App
+     * @param m_Dirty 
      */
-    public ConversionRateView() {
-        initComponents();
-    }
-    
     public ConversionRateView(AppView m_App, DirtyManager m_Dirty) {
+        initComponents();
         
+        dlConversionRate = (DataLogicConversionRate) m_App.getBean(DataLogicConversionRate.class.getName());
+        
+        currenSentList = dlConversionRate.getCurrencyList();
+        currenBoxValMod = new ComboBoxValModel();
+        currenToBoxValMod = new ComboBoxValModel();
+        
+        txtValidFrom.getDocument().addDocumentListener(m_Dirty);
+        txtValidTo.getDocument().addDocumentListener(m_Dirty);
+        jCBIsActive.addActionListener(m_Dirty);
+        
+        writeValueEOF();
     }
 
     /**
@@ -37,36 +61,221 @@ public class ConversionRateView extends javax.swing.JPanel implements EditorReco
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jCmbCurrency = new javax.swing.JComboBox<>();
+        jCmbCurrencyTo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jCmbConvType = new javax.swing.JComboBox<>();
+        jCBIsActive = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        txtValidFrom = new javax.swing.JTextField();
+        btnValidFrom = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtValidTo = new javax.swing.JTextField();
+        btnValidTo = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTxtDivRate = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTxtMultRate = new javax.swing.JTextField();
+
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("pos_messages"); // NOI18N
+        jLabel1.setText(bundle.getString("Label.Currency")); // NOI18N
+
+        jLabel2.setText(bundle.getString("Label.CurrencyTo")); // NOI18N
+
+        jLabel3.setText(bundle.getString("Label.Currency.ConversionType")); // NOI18N
+
+        jCBIsActive.setText(bundle.getString("label.IsActive")); // NOI18N
+
+        jLabel7.setText(AppLocal.getIntString("Label.ValidFrom")); // NOI18N
+
+        btnValidFrom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
+        btnValidFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidFromActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText(AppLocal.getIntString("Label.ValidTo")); // NOI18N
+
+        btnValidTo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/date.png"))); // NOI18N
+        btnValidTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidToActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText(bundle.getString("Label.DivideRate")); // NOI18N
+
+        jLabel5.setText(bundle.getString("Label.MultiplyRate")); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtValidFrom)
+                            .addComponent(jCmbCurrency, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCmbConvType, 0, 137, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtValidTo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnValidFrom)
+                    .addComponent(btnValidTo))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCBIsActive)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCmbCurrencyTo, 0, 141, Short.MAX_VALUE)
+                            .addComponent(jTxtDivRate)
+                            .addComponent(jTxtMultRate))))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnValidTo)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jCmbCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCmbCurrencyTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jCmbConvType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCBIsActive))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(txtValidFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jTxtDivRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnValidFrom))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtValidTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTxtMultRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnValidFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidFromActionPerformed
+        Date date;
+        try {
+            date = (Date) Formats.TIMESTAMP.parseValue(txtValidFrom.getText());
+        } catch (BasicException e) {
+            date = null;
+        }
+        date = JCalendarDialog.showCalendarTimeHours(this, date);
+        if (date != null) {
+            txtValidFrom.setText(Formats.TIMESTAMP.formatValue(date));
+        }
+    }//GEN-LAST:event_btnValidFromActionPerformed
+
+    private void btnValidToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidToActionPerformed
+         Date date;
+        try {
+            date = (Date) Formats.TIMESTAMP.parseValue(txtValidTo.getText());
+        } catch (BasicException e) {
+            date = null;
+        }
+        date = JCalendarDialog.showCalendarTimeHours(this, date);
+        if (date != null) {
+            txtValidTo.setText(Formats.TIMESTAMP.formatValue(date));
+        }
+    }//GEN-LAST:event_btnValidToActionPerformed
+
     @Override
     public void writeValueEOF() {
-        
+        initDefaultComponents(null);
+        enableComponents(false);
     }
 
     @Override
     public void writeValueInsert() {
-        
+        initDefaultComponents(null);
+        enableComponents(true);
     }
 
     @Override
     public void writeValueEdit(Object value) {
-        
+        Object[] currency = (Object[]) value;
+       /* m_Currency_ID = currency[0];
+        jTxtCostingPrecision.setText(currency[1].toString());
+        jTxtCurSymbol.setText((String)currency[2]);
+        jTADescription.setText((String)currency[3]);
+        jChBIsActive.setSelected(currency[4].equals("Y"));
+        jTxtISO_Code.setText((String)currency[5]);
+        jTxtStdPrecision.setText(currency[6].toString());
+        */
+        enableComponents(true);
     }
 
     @Override
     public void writeValueDelete(Object value) {
-        
+        Object[] currency = (Object[]) value;
+        /*m_Currency_ID = currency[0];
+        jTxtCostingPrecision.setText(currency[1].toString());
+        jTxtCurSymbol.setText((String)currency[2]);
+        jTADescription.setText((String)currency[3]);
+        jChBIsActive.setSelected(currency[4].equals("Y"));
+        jTxtISO_Code.setText((String)currency[5]);
+        jTxtStdPrecision.setText(currency[6].toString());
+        */
+        enableComponents(false);
     }
 
     @Override
@@ -85,8 +294,53 @@ public class ConversionRateView extends javax.swing.JPanel implements EditorReco
         
         return conversionRate;
     }
+    
+     private void initDefaultComponents(String value) {
+        /*m_Currency_ID = value;
+        jTxtISO_Code.setText(value);
+        jTADescription.setText(value);
+        jTxtCostingPrecision.setText(value);
+        jTxtStdPrecision.setText(value);
+        jChBIsActive.setSelected(true);
+        jTxtCurSymbol.setText(value);*/
+    }
+    
+    private void enableComponents(boolean value) {
+        /*jTxtISO_Code.setEnabled(value);
+        jTADescription.setEnabled(value);
+        jTxtCostingPrecision.setEnabled(value);
+        jTxtStdPrecision.setEnabled(value);
+        jChBIsActive.setEnabled(value);
+        jTxtCurSymbol.setEnabled(value);*/
+    }
+    
+    public void activate() throws BasicException {
+        List a = currenSentList.list();
+        currenBoxValMod = new ComboBoxValModel(a);
+        currenToBoxValMod = new ComboBoxValModel(a);
+        jCmbCurrency.setModel(currenBoxValMod);
+        jCmbCurrencyTo.setModel(currenToBoxValMod);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnValidFrom;
+    private javax.swing.JButton btnValidTo;
+    private javax.swing.JCheckBox jCBIsActive;
+    private javax.swing.JComboBox<String> jCmbConvType;
+    private javax.swing.JComboBox<String> jCmbCurrency;
+    private javax.swing.JComboBox<String> jCmbCurrencyTo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTxtDivRate;
+    private javax.swing.JTextField jTxtMultRate;
+    private javax.swing.JTextField txtValidFrom;
+    private javax.swing.JTextField txtValidTo;
     // End of variables declaration//GEN-END:variables
 }

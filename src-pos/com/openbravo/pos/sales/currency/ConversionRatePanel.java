@@ -5,6 +5,7 @@
  */
 package com.openbravo.pos.sales.currency;
 
+import com.openbravo.basic.BasicException;
 import com.openbravo.data.gui.ListCellRendererBasic;
 import com.openbravo.data.loader.TableDefinition;
 import com.openbravo.data.user.EditorRecord;
@@ -32,6 +33,12 @@ public class ConversionRatePanel extends JPanelTable {
         jEditor = new ConversionRateView(app, dirty);
     }
 
+    @Override
+    public void activate() throws BasicException {    
+        jEditor.activate();         
+        super.activate();
+    }
+    
     @Override
     public EditorRecord getEditor() {
         return jEditor;
