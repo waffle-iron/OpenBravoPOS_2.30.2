@@ -22,7 +22,12 @@ import javax.swing.ListCellRenderer;
  */
 public class ConversionRatePanel extends JPanelTable {
 
-    private TableDefinition t_ConversionRate;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7389329411432913570L;
+
+	private TableDefinition t_ConversionRate;
     
     private ConversionRateView jEditor;
     
@@ -51,7 +56,7 @@ public class ConversionRatePanel extends JPanelTable {
 
     @Override
     public SaveProvider getSaveProvider() {
-        return new SaveProvider(t_ConversionRate, new int [] {0});
+        return new SaveProvider(t_ConversionRate, new int [] {0,1,2,3,4,5,6,7,8});
     }
 
     @Override
@@ -61,7 +66,7 @@ public class ConversionRatePanel extends JPanelTable {
     
     @Override
     public ListCellRenderer getListCellRenderer() {
-        return new ListCellRendererBasic(t_ConversionRate.getRenderStringBasic(new int[]{1,2}));
+        return new ListCellRendererBasic(t_ConversionRate.getRenderStringBasic(new int[]{2,3}));
     }
     
 }

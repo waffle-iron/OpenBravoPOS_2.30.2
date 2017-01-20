@@ -174,6 +174,10 @@ public class JPaymentCashPos extends javax.swing.JPanel implements JPaymentInter
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         m_jMoneyEuros = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -181,28 +185,27 @@ public class JPaymentCashPos extends javax.swing.JPanel implements JPaymentInter
         jPanel3 = new javax.swing.JPanel();
         m_jTendered = new com.openbravo.editor.JEditorCurrencyPositive();
 
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.BorderLayout(3, 3));
 
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(2, 1));
 
         jPanel4.setPreferredSize(new java.awt.Dimension(0, 100));
         jPanel4.setLayout(null);
 
-        m_jChangeEuros.setBackground(java.awt.Color.white);
         m_jChangeEuros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         m_jChangeEuros.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
         m_jChangeEuros.setOpaque(true);
         m_jChangeEuros.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel4.add(m_jChangeEuros);
-        m_jChangeEuros.setBounds(120, 50, 150, 25);
+        m_jChangeEuros.setBounds(150, 120, 150, 25);
 
         jLabel6.setText(AppLocal.getIntString("Label.ChangeCash")); // NOI18N
         jPanel4.add(jLabel6);
-        jLabel6.setBounds(20, 50, 100, 15);
+        jLabel6.setBounds(20, 120, 100, 15);
 
         jLabel8.setText(AppLocal.getIntString("Label.InputCash")); // NOI18N
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(20, 20, 100, 15);
+        jLabel8.setBounds(20, 90, 100, 15);
 
         m_jMoneyEuros.setBackground(new java.awt.Color(153, 153, 255));
         m_jMoneyEuros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -210,12 +213,29 @@ public class JPaymentCashPos extends javax.swing.JPanel implements JPaymentInter
         m_jMoneyEuros.setOpaque(true);
         m_jMoneyEuros.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel4.add(m_jMoneyEuros);
-        m_jMoneyEuros.setBounds(120, 20, 150, 25);
+        m_jMoneyEuros.setBounds(150, 90, 150, 25);
 
-        jPanel5.add(jPanel4, java.awt.BorderLayout.NORTH);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("pos_messages"); // NOI18N
+        jLabel1.setText(bundle.getString("Label.Currency")); // NOI18N
+        jPanel4.add(jLabel1);
+        jLabel1.setBounds(20, 10, 90, 15);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel4.add(jComboBox1);
+        jComboBox1.setBounds(150, 10, 150, 24);
+
+        jLabel2.setText(bundle.getString("Label.Currency.ConversionType")); // NOI18N
+        jPanel4.add(jLabel2);
+        jLabel2.setBounds(20, 50, 120, 20);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel4.add(jComboBox2);
+        jComboBox2.setBounds(150, 50, 150, 24);
+
+        jPanel5.add(jPanel4);
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        jPanel5.add(jPanel6, java.awt.BorderLayout.CENTER);
+        jPanel5.add(jPanel6);
 
         add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -237,6 +257,10 @@ public class JPaymentCashPos extends javax.swing.JPanel implements JPaymentInter
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

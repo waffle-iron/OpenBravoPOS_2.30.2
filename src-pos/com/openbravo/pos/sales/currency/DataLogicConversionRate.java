@@ -30,9 +30,9 @@ public class DataLogicConversionRate extends BeanFactoryDataSingle{
     private static final Datas[] FIELD_DATAS = 
             new Datas[] {
                 Datas.STRING,
-                Datas.STRING,
-                Datas.STRING,
-                Datas.STRING,
+                Datas.OBJECT,
+                Datas.OBJECT,
+                Datas.OBJECT,
                 Datas.DOUBLE,
                 Datas.STRING,
                 Datas.DOUBLE,
@@ -102,4 +102,45 @@ public class DataLogicConversionRate extends BeanFactoryDataSingle{
                 )
         );
     }
+    
+    public SentenceList getConversionType() {
+        String sql = "SELECT ConversionType_ID, Value, Name, Description, IsActive, isDefault FROM ConversionType";
+        
+        return new StaticSentence(
+                m_Session, 
+                sql, 
+                null,
+                (DataRead dr) -> new ConversionTypeInfo(
+                        dr.getString(1), 
+                        dr.getString(2), 
+                        dr.getString(3), 
+                        dr.getString(4), 
+                        dr.getString(5),
+                        dr.getString(6)
+                )
+        );
+    }
+    
+    /*
+    
+    public SentenceList getConversionRate() {
+        String sql = "SELECT ConversionRate_ID, CONVERSIONTYPE_ID, CURRENCY_ID, CURRENCYTO_ID, DIVIDERATE, ISACTIVE, MULTIPYRATE, VALIDFROM, VALIDTO FROM ConversionRate";
+        
+        return new StaticSentence(
+                m_Session, 
+                sql, 
+                null,
+                (DataRead dr) -> new ConversionRateInfo(
+                        dr.getString(1), 
+                        dr.getString(2), 
+                        dr.getString(3), 
+                        dr.getString(4), 
+                        dr.getDouble(5), 
+                        dr.getString(6), 
+                        dr.getDouble(7), 
+                        dr.getTimestamp(8), 
+                        dr.getTimestamp(9)
+                )
+        );
+    }*/
 }

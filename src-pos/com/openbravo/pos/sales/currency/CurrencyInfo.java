@@ -6,7 +6,6 @@
 package com.openbravo.pos.sales.currency;
 
 import com.openbravo.data.loader.IKeyed;
-import com.openbravo.pos.forms.AppLocal;
 import java.io.Serializable;
 
 /**

@@ -17,6 +17,7 @@ import com.openbravo.pos.forms.AppView;
 import java.awt.Component;
 import java.util.List;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -24,12 +25,19 @@ import java.util.Date;
  */
 public final class ConversionRateView extends javax.swing.JPanel implements EditorRecord{
 
-    private Object m_ConversionRateID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -724481632552377893L;
+
+	private Object m_ConversionRateID;
     
-    private SentenceList currenSentList ;
+    private final SentenceList currenSentList ;
     private ComboBoxValModel currenBoxValMod;
     private ComboBoxValModel currenToBoxValMod;
-    private DataLogicConversionRate dlConversionRate;
+    private final DataLogicConversionRate dlConversionRate;
+    private final SentenceList conversionTypeSentList;
+    private ComboBoxValModel conversionTypeBoxValMod;
     
     /**
      * Creates new form ConversionRateView
@@ -42,8 +50,11 @@ public final class ConversionRateView extends javax.swing.JPanel implements Edit
         dlConversionRate = (DataLogicConversionRate) m_App.getBean(DataLogicConversionRate.class.getName());
         
         currenSentList = dlConversionRate.getCurrencyList();
+        conversionTypeSentList = dlConversionRate.getConversionType();
+        
         currenBoxValMod = new ComboBoxValModel();
         currenToBoxValMod = new ComboBoxValModel();
+        conversionTypeBoxValMod = new ComboBoxValModel();
         
         txtValidFrom.getDocument().addDocumentListener(m_Dirty);
         txtValidTo.getDocument().addDocumentListener(m_Dirty);
@@ -252,7 +263,8 @@ public final class ConversionRateView extends javax.swing.JPanel implements Edit
 
     @Override
     public void writeValueEdit(Object value) {
-        Object[] currency = (Object[]) value;
+        Object[] convRate = (Object[]) value;
+        m_ConversionRateID  = convRate[0];
        /* m_Currency_ID = currency[0];
         jTxtCostingPrecision.setText(currency[1].toString());
         jTxtCurSymbol.setText((String)currency[2]);
@@ -266,7 +278,7 @@ public final class ConversionRateView extends javax.swing.JPanel implements Edit
 
     @Override
     public void writeValueDelete(Object value) {
-        Object[] currency = (Object[]) value;
+        Object[] convRate = (Object[]) value;
         /*m_Currency_ID = currency[0];
         jTxtCostingPrecision.setText(currency[1].toString());
         jTxtCurSymbol.setText((String)currency[2]);
@@ -290,8 +302,16 @@ public final class ConversionRateView extends javax.swing.JPanel implements Edit
 
     @Override
     public Object createValue() throws BasicException {
-        Object[] conversionRate = new Object[6];
-        
+        Object[] conversionRate = new Object[9];
+        conversionRate[0] = m_ConversionRateID == null ? UUID.randomUUID().toString() : m_ConversionRateID;
+        conversionRate[1] = jCmbCurrency.getSelectedItem();
+        conversionRate[2] = jCmbCurrencyTo.getSelectedItem();
+        conversionRate[3] = jCmbConvType.getSelectedItem();
+        conversionRate[4] = jCBIsActive.isSelected() ? "Y" : "N";
+        conversionRate[5] = Formats.TIMESTAMP.parseValue(txtValidFrom.getText());
+        conversionRate[6] = Formats.TIMESTAMP.parseValue(txtValidTo.getText());
+        conversionRate[7] = Formats.DOUBLE.parseValue(jTxtDivRate.getText());
+        conversionRate[8] = Formats.DOUBLE.parseValue(jTxtMultRate.getText());
         return conversionRate;
     }
     
@@ -320,6 +340,10 @@ public final class ConversionRateView extends javax.swing.JPanel implements Edit
         currenToBoxValMod = new ComboBoxValModel(a);
         jCmbCurrency.setModel(currenBoxValMod);
         jCmbCurrencyTo.setModel(currenToBoxValMod);
+        
+        a = conversionTypeSentList.list();
+        conversionTypeBoxValMod = new ComboBoxValModel(a);
+        jCmbConvType.setModel(conversionTypeBoxValMod);
     }
 
 
